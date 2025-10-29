@@ -54,8 +54,8 @@ mkdir -p ${VENDOR_BOOT_POINT};
 
 # Setup loop mount
 ui_print " Create loop device vendor/dlkm";
-LOOP_DLKM=$(losetup -fP --show ${VENDOR_DLKM_IMG});
-LOOP_BOOT=$(losetup -fP --show ${VENDOR_BOOT_IMG});
+LOOP_DLKM=$(losetup -f --show ${VENDOR_DLKM_IMG});
+LOOP_BOOT=$(losetup -f --show ${VENDOR_BOOT_IMG});
 ui_print "  - vendor dlkm: ${LOOP_DLKM}";
 ui_print "  - vendor boot: ${LOOP_BOOT}";
 ui_print " ";
