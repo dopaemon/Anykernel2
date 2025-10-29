@@ -67,12 +67,10 @@ done;
 if [ $? != 0 -o -z "$(ls /data/dora/bin)" ]; then
   abort "Recovery busybox setup failed. Aborting...";
 fi;
-PATH="/data/dora/bin:$PATH" $bb ash /data/dora/dora.sh $2;
+SLOT=$(find_slot) PATH="/data/dora/bin:$PATH" $bb ash /data/dora/dora.sh $2;
 if [ $? != "0" ]; then
   abort;
 fi;
-
-SLOT=$(find_slot)
 
 umount /vendor;
 umount /data;
