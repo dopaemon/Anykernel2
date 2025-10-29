@@ -38,7 +38,7 @@ abort() { ui_print "$*"; umount /vendor; umount /data; exit 1; }
 show_progress 1.34 4;
 ui_print " ";
 ui_print " ----------------------------- ";
-ui_print "       Doraemon Kernel ";
+ui_print "       Doraemon Modules ";
 ui_print " ----------------------------- ";
 ui_print " Device: Xiaomi ";
 ui_print " Linux: 5.10.y - GKI ";
@@ -47,7 +47,7 @@ ui_print " Developer: @KernelPanix ";
 ui_print " ----------------------------- ";
 ui_print " ----------------------------- ";
 mount -o ro /vendor_boot;
-mount -o ro / vendor_dlkm;
+mount -o ro /vendor_dlkm;
 mount -o ro /vendor;
 mount /data;
 
