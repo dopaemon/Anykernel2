@@ -27,13 +27,6 @@ abort() { ui_print "$*"; umount /vendor; umount /data; exit 1; }
 
 show_progress 1.34 4;
 ui_print " ";
-ui_print " ";
-ui_print " ----------------------------- ";
-ui_print " ________ ";
-ui_print "___  __ \__________________ _ ";
-ui_print " __  / / /  __ \_  ___/  __ `/ ";
-ui_print " _  /_/ // /_/ /  /   / /_/ / ";
-ui_print " /_____/ \____//_/    \__,_/ ";
 ui_print " ----------------------------- ";
 ui_print "       Doraemon Kernel ";
 ui_print " ----------------------------- ";
@@ -42,7 +35,6 @@ ui_print " Linux: 5.10.y - GKI ";
 ui_print " Android: 12 ";
 ui_print " Developer: @KernelPanix ";
 ui_print " ----------------------------- ";
-ui_print " ";
 ui_print " ----------------------------- ";
 mount -o ro /vendor_boot;
 mount -o ro / vendor_dlkm;
