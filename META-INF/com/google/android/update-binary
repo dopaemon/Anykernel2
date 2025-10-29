@@ -1,7 +1,7 @@
 #!/sbin/sh
 # Ubuntu Touch Flashable Zip
 # Base Flashable Zip With Erfan
-# Create Flashable Zip With Nobi Nobita
+# Create Flashable Zip With Dopaemon
 # Based on anykernel2 script by osm0sis
 
 OUTFD=/proc/self/fd/$2;
@@ -28,42 +28,49 @@ abort() { ui_print "$*"; umount /vendor; umount /data; exit 1; }
 show_progress 1.34 4;
 ui_print " ";
 ui_print " ";
-ui_print "    _   _ ____  ____            _        ";
-ui_print "   | | | | __ )|  _ \ ___  _ __| |_ ___  ";
-ui_print "   | | | |  _ \| |_) / _ \| '__| __/ __| ";
-ui_print "   | |_| | |_) |  __/ (_) | |  | |_\__ \ ";
-ui_print "    \___/|____/|_|   \___/|_|   \__|___/ ";
-ui_print "                                         ";
+ui_print " ----------------------------- ";
+ui_print " ________ ";
+ui_print "___  __ \__________________ _ ";
+ui_print " __  / / /  __ \_  ___/  __ `/ ";
+ui_print " _  /_/ // /_/ /  /   / /_/ / ";
+ui_print " /_____/ \____//_/    \__,_/ ";
+ui_print " ----------------------------- ";
+ui_print "       Doraemon Kernel ";
+ui_print " ----------------------------- ";
+ui_print " Device: Xiaomi ";
+ui_print " Linux: 5.10.y - GKI ";
+ui_print " Android: 12 ";
+ui_print " Developer: @KernelPanix ";
+ui_print " ----------------------------- ";
 ui_print " ";
-ui_print " Start Install Ubuntu Touch / UbPorts ";
-ui_print " Xiaomi Redmi Note 10 Pro             ";
+ui_print " ----------------------------- ";
+mount -o ro /vendor_boot;
+mount -o ro / vendor_dlkm;
 mount -o ro /vendor;
 mount /data;
 
-mkdir -p /data/ubports/bin;
-cd /data/ubports;
+mkdir -p /data/dora/bin;
+cd /data/dora;
 ui_print " Extracting Zip Into /data ";
 unzip -o "$ZIP";
-if [ $? != 0 -o -z "$(ls /data/ubports/tools)" ]; then
+if [ $? != 0 -o -z "$(ls /data/dora/tools)" ]; then
   abort "Unzip failed. Aborting...";
 fi;
-chmod -R 755 /data/ubports/tools /data/ubports/bin;
-bb=/data/ubports/tools/busybox;
+chmod -R 755 /data/dora/tools /data/dora/bin;
+bb=/data/dora/tools/busybox;
 
 for i in $($bb --list); do
-  $bb ln -s $bb /data/ubports/bin/$i;
+  $bb ln -s $bb /data/dora/bin/$i;
 done;
-if [ $? != 0 -o -z "$(ls /data/ubports/bin)" ]; then
+if [ $? != 0 -o -z "$(ls /data/dora/bin)" ]; then
   abort "Recovery busybox setup failed. Aborting...";
 fi;
-PATH="/data/ubports/bin:$PATH" $bb ash /data/ubports/ubports.sh $2;
+PATH="/data/dora/bin:$PATH" $bb ash /data/dora/dora.sh $2;
 if [ $? != "0" ]; then
   abort;
 fi;
 
-ui_print "Add File To rootfs";
-
 umount /vendor;
 umount /data;
 ui_print " ";
-ui_print "Install Done Thanks You Install UbPorts .";
+ui_print "Install Done Thanks You Install DoraCore Kernel.";
