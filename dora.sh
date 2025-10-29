@@ -56,6 +56,8 @@ mkdir -p ${VENDOR_BOOT_POINT};
 ui_print " Create loop device vendor/dlkm";
 LOOP_DLKM=$(losetup -f --show ${VENDOR_DLKM_IMG});
 LOOP_BOOT=$(losetup -f --show ${VENDOR_BOOT_IMG});
+echo "${LOOP_DLKM}" >> /sdcard/DoraBackup/debug.log
+echo "${LOOP_BOOT}" >> /sdcard/DoraBackup/debug.log
 ui_print "  - vendor dlkm: ${LOOP_DLKM}";
 ui_print "  - vendor boot: ${LOOP_BOOT}";
 ui_print " ";
