@@ -15,6 +15,16 @@ ui_print() {
   done;
 }
 show_progress() { echo "progress $1 $2" > $OUTFD; }
+find_slot() {
+  local slot=$(getprop ro.boot.slot_suffix 2>/dev/null);
+  [ "$slot" ] || slot=$($bb grep -o 'androidboot.slot_suffix=.*$' /proc/cmdline | $bb cut -d\  -f1 | $bb cut -d= -f2);
+  if [ ! "$slot" ]; then
+    slot=$(getprop ro.boot.slot 2>/dev/null);
+    [ "$slot" ] || slot=$($bb grep -o 'androidboot.slot=.*$' /proc/cmdline | $bb cut -d\  -f1 | $bb cut -d= -f2);
+    [ "$slot" ] && slot=_$slot;
+  fi;
+  [ "$slot" ] && echo "$slot";
+}
 set_perm_recursive() {
   dirs=$(echo $* | $bb awk '{ print substr($0, index($0,$5)) }');
   for i in $dirs; do
@@ -61,6 +71,8 @@ PATH="/data/dora/bin:$PATH" $bb ash /data/dora/dora.sh $2;
 if [ $? != "0" ]; then
   abort;
 fi;
+
+SLOT=$(find_slot)
 
 umount /vendor;
 umount /data;
